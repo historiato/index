@@ -1,18 +1,32 @@
 const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
-// Configuración del servidor
-const hostname = '0.0.0.0'; // Dirección IP (localhost)
-const port = 80; // Puerto donde escuchará el servidor
+const hostname = '0.0.0.0';
+const port = 80;
 
-// Creación del servidor
 const server = http.createServer((req, res) => {
-  // Configuración de la respuesta
-  res.statusCode = 200; // Código HTTP de éxito
-  res.setHeader('Content-Type', 'text/html'); // Tipo de contenido
-  res.end('<h1>Historiato</h1>'); // Respuesta del servidor
+  if (req.url === '/' || req.url === '/index.html') {
+    const filePath = path.join(__dirname, 'index.html');
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Error interno del servidor');
+        return;
+      }
+
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html');
+      res.end(data);
+    });
+  } else {
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Página no encontrada');
+  }
 });
 
-// Inicio del servidor
 server.listen(port, hostname, () => {
   console.log(`Servidor corriendo en http://${hostname}:${port}/`);
 });
