@@ -8,8 +8,8 @@ const port = 80; // Puerto donde escuchará el servidor
 const server = http.createServer((req, res) => {
   // Configuración de la respuesta
   res.statusCode = 200; // Código HTTP de éxito
-  res.setHeader('Content-Type', 'text/plain'); // Tipo de contenido
-  res.end('¡Hola, mundo!'); // Respuesta del servidor
+  res.setHeader('Content-Type', 'text/html'); // Tipo de contenido
+  res.end('<h1>Historiato</h1>'); // Respuesta del servidor
 });
 
 // Inicio del servidor
