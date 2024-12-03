@@ -6,7 +6,7 @@ const hostname = '0.0.0.0';
 const port = 80;
 
 // Directorio base desde donde se servirán los archivos
-const publicDirectory = path.join(__dirname, 'public');
+const publicDirectory = path.join(__dirname, '.');
 
 const server = http.createServer((req, res) => {
   // Resolver la ruta del archivo solicitado
