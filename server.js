@@ -2,7 +2,7 @@ const http = require('http');
 
 // Configuración del servidor
 const hostname = '0.0.0.0'; // Dirección IP (localhost)
-const port = 3000; // Puerto donde escuchará el servidor
+const port = 80; // Puerto donde escuchará el servidor
 
 // Creación del servidor
 const server = http.createServer((req, res) => {
